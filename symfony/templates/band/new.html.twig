@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau groupe{% endblock %}
+
+{% block body %}
+    <h1>Créer nouveau groupe</h1>
+
+    {{ include('band/_form.html.twig') }}
+
+    <a href="{{ path('band_list') }}">retour à la liste</a>
+{% endblock %}

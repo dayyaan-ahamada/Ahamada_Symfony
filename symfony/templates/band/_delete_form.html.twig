@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('band_delete', {'id': band.id}) }}" onsubmit="return confirm('Êtes vous sûr' +
+ ' de vouloir supprimer ce groupe ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ band.id) }}">
+    <button class="btn">Supprimer ce groupe</button>
+</form>

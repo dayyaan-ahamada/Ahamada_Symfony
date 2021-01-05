@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des membres{% endblock %}
+
+{% block body %}
+    <h1>Liste des membres</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Rôle</th>
+                <th>Date de naissance</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for member in members %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.firstName }}</td>
+                <td>{{ member.job }}</td>
+                <td>{{ member.birthDate ? member.birthDate|date('Y-m-d') : '' }}</td>
+                <td>{{ member.picture }}</td>
+                <td>
+                    <a href="{{ path('member_show', {'id': member.id}) }}">Afficher</a>
+                    <a href="{{ path('member_edit', {'id': member.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('member_new') }}">Ajouter un membre</a>
+{% endblock %}

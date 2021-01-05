@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for concert in concerts %}
+        <div class="card-body">
+            <h5 class="card-title">Le concert {{ concert.tourName }}</h5>
+            <p class="card-text">Date du concert : {{ concert.date|date('Y-m-d') }}</p>
+            <p class="card-text">{{concert.hall.concertHall.name }}</p>
+            <a href="{{ path('show_list', {'id': concert.id}) }}">Afficher</a>
+            <a href="{{ path('concert_edit', {'id': concert.id}) }}">Modifier</a>
+        </div>
+{#        <a href="{{ path('band_show', {id:band.id}) }}">{{ concert.band }}</a>#}
+    {% endfor %}
+    <div>
+        <a href="{{ path('concert_new') }}">Ajouter un concert</a>
+    </div>
+{% endblock %}

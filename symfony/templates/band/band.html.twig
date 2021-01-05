@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <h1>Le groupe {{ band.name }} </h1>
+    <p>Composé de {{ band.members|length }} membres, qui sont :</p>
+
+    <div class="container">
+
+        <div class="card-deck">
+            {% for member in band.members %}
+
+                <div class="card">
+                    <img src="{{ asset('images/'~ member.picture) }}" class="card-img-top" alt="..."
+                         width="500">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ path('member_show', {id: member.id}) }}">
+                                {{ member.name|e }} {{ member.firstname|e }}</a></h5>
+                        <p class="card-text">Né le {{ member.birthDate|date('d-m-Y') }}.</p>
+                    </div>
+                    <div class="card-footer"><small class="text-muted">{{ member.job }}</small>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+        </div>
+        <a href="{{ path('band_list') }}">Retour à la liste</a>
+
+        <a href="{{ path('band_edit', {'id': band.id}) }}">Modifier</a>
+
+        {{ include('band/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}
